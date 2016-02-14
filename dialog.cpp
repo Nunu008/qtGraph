@@ -16,10 +16,10 @@ Dialog::Dialog(QWidget *parent) :
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
-    createNode(0);
-    createNode(0);
+    Node start  = createNode(0);
+    Node end    = createNode(0);
 
-    //createEdge();
+    createEdge(start, "test", end);
 
 
 }
@@ -62,9 +62,11 @@ Node Dialog::createNode(long newId)
 
 void Dialog::createEdge(Node src, QString label, Node tgt)
 {
+    src.createEdge(label, tgt);
+
     src.ellipse->customLine = new  QGraphicsLineItem(0,0,0,0);
     scene->addItem(src.ellipse->customLine);
 
-    src.createEdge(label, tgt);
-
+    src.ellipse->setLine(src.ellipse->customLine,false);// for false create enum with start and end
+    tgt.ellipse->setLine(src.ellipse->customLine,true);
 }

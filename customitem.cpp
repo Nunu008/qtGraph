@@ -58,18 +58,18 @@ void customItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     Pressed = false;
 
-//    if(startOrEnd == false)
-//    {
-//       customLine->setLine( this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y(),
-//                            customLine->line().x2(), customLine->line().y2() );
-//    }
+    if(startOrEnd == false)
+    {
+       customLine->setLine( this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y(),
+                            customLine->line().x2(), customLine->line().y2() );
+    }
 
 
-//    if(startOrEnd == true)
-//    {
-//       customLine->setLine( customLine->line().x1(), customLine->line().y1(),
-//                            this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y());
-//    }
+    if(startOrEnd == true)
+    {
+       customLine->setLine( customLine->line().x1(), customLine->line().y1(),
+                            this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y());
+    }
 
     update();
     QGraphicsItem::mouseReleaseEvent(event);
