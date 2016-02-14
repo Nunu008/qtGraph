@@ -23,9 +23,13 @@ public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
 
-    Node createNode(long newId);
+    Node createNode(QString name,long newId);
 
     void createEdge(Node src, QString label, Node tgt);
+
+
+    void test1();
+    void test2();
 
 private:
     Ui::Dialog *ui;

@@ -16,11 +16,8 @@ Dialog::Dialog(QWidget *parent) :
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
-    Node start  = createNode(0);
-    Node end    = createNode(0);
 
-    createEdge(start, "test", end);
-
+    test1();
 
 }
 
@@ -29,7 +26,7 @@ Dialog::~Dialog()
     delete ui;
 }
 
-Node Dialog::createNode(long newId)
+Node Dialog::createNode(QString name, long newId)
 {
 
     Node newNode;
@@ -40,20 +37,11 @@ Node Dialog::createNode(long newId)
 
     maxIdNode++;
 
-
-//    QBrush whiteBrush(Qt::white);
-//    QPen   outlinePen(Qt::gray);
-//    outlinePen.setWidth(5);
-
     qsrand(qrand());
 
-    //newNode.ellipse = scene->addEllipse(0, -100, 50, 50, outlinePen, whiteBrush);
-//    newNode.ellipse = scene->addEllipse(qrand() % ((High + 1) - Low) + Low,
-//                                        qrand() % ((High + 1) - Low) + Low, 50, 50, outlinePen, whiteBrush);
-//    newNode.setEllipseIsMoveable();
-//    newNode.setEllipseIsSelectable();
 
     newNode.ellipse = new customItem();
+    newNode.ellipse->mName = name;
 
     scene->addItem(newNode.ellipse);
 
@@ -67,6 +55,23 @@ void Dialog::createEdge(Node src, QString label, Node tgt)
     src.ellipse->customLine = new  QGraphicsLineItem(0,0,0,0);
     scene->addItem(src.ellipse->customLine);
 
+
     src.ellipse->setLine(src.ellipse->customLine,false);// for false create enum with start and end
     tgt.ellipse->setLine(src.ellipse->customLine,true);
+
+}
+
+void Dialog::test1()
+{
+    Node start  = createNode("start",0);
+    Node end    = createNode("end",0);
+
+    createEdge(start, "test", end);
+
+}
+
+void Dialog::test2()
+{
+
+
 }

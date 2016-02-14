@@ -4,6 +4,7 @@ customItem::customItem()
 {
     Pressed = false;
     setFlag(ItemIsMovable);
+    customLine = NULL;
 
 }
 
@@ -19,19 +20,23 @@ void customItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
     mCenter = ellipse.center();
 
-    //qDebug()  << "mCenter: " << mCenter;
+    painter->setBrush(Qt::gray);
+
 
     if(Pressed)
     {
         QPen pen(Qt::red, 3);
         painter->setPen(pen);
         painter->drawEllipse(ellipse);
+        painter->drawText(mCenter,mName);
+
     }
     else
     {
         QPen pen(Qt::black, 3);
         painter->setPen(pen);
         painter->drawEllipse(ellipse);
+        painter->drawText(mCenter,mName);
     }
 }
 
@@ -49,6 +54,23 @@ qreal customItem::getYPosEllipse()
 void customItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     Pressed = true;
+
+
+    if(startOrEnd == false)
+    {
+       customLine->setLine( this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y(),
+                            customLine->line().x2(), customLine->line().y2() );
+    }
+
+
+    if(startOrEnd == true)
+    {
+       customLine->setLine( customLine->line().x1(), customLine->line().y1(),
+                            this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y());
+    }
+
+
+
     update();
     QGraphicsItem::mousePressEvent(event);
 

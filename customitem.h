@@ -4,6 +4,9 @@
 
 #include <QDebug>
 
+
+
+
 class customItem : public QGraphicsItem
 {
 public:
@@ -28,5 +31,12 @@ public:
     QGraphicsLineItem *customLine;
 
     QPointF mCenter;
+    QString mName;
+
+    enum ManagedLineEnd {
+        StartOfLine,
+        EndOfLine
+    };
+    ManagedLineEnd m_myLineEnd;
 };
 
