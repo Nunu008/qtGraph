@@ -17,7 +17,8 @@ Dialog::Dialog(QWidget *parent) :
     ui->graphicsView->setScene(scene);
 
 
-    test1();
+    //test1();
+    test2();
 
 }
 
@@ -72,6 +73,11 @@ void Dialog::test1()
 
 void Dialog::test2()
 {
+    Node start  = createNode("start",0);
+    Node middel= createNode("middel",0);
+    Node end    = createNode("end",0);
 
+    createEdge(start, "test", end);
+    createEdge(start, "test", middel);
 
 }

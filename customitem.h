@@ -1,7 +1,7 @@
 #include <QPen>
 #include <QGraphicsItem>
 #include <QPainter>
-
+#include <QMap>
 #include <QDebug>
 
 
@@ -29,6 +29,8 @@ public:
 
     bool startOrEnd;
     QGraphicsLineItem *customLine;
+
+    QMap<QGraphicsLineItem*, bool> customLineList;
 
     QPointF mCenter;
     QString mName;

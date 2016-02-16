@@ -55,19 +55,25 @@ void customItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     Pressed = true;
 
+    QMapIterator<QGraphicsLineItem*, bool> Iter(customLineList);
 
-    if(startOrEnd == false)
+    while(Iter.hasNext())
     {
-       customLine->setLine( this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y(),
-                            customLine->line().x2(), customLine->line().y2() );
+        Iter.next();
+        qDebug()<< "setLine: " << Iter.key()<< " = " << Iter.value();
+
+        if(Iter.value() == false)
+        {
+            Iter.key()->setLine(this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y(),
+                                customLine->line().x2(), customLine->line().y2());
+        }
+        if(Iter.value() == true )
+        {
+            Iter.key()->setLine(customLine->line().x1(), customLine->line().y1(),
+                                this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y());
+        }
     }
 
-
-    if(startOrEnd == true)
-    {
-       customLine->setLine( customLine->line().x1(), customLine->line().y1(),
-                            this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y());
-    }
 
 
 
@@ -80,18 +86,25 @@ void customItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     Pressed = false;
 
-    if(startOrEnd == false)
+    QMapIterator<QGraphicsLineItem*, bool> Iter(customLineList);
+
+    while(Iter.hasNext())
     {
-       customLine->setLine( this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y(),
-                            customLine->line().x2(), customLine->line().y2() );
+        Iter.next();
+        qDebug()<< "setLine: " << Iter.key()<< " = " << Iter.value();
+
+        if(Iter.value() == false)
+        {
+            Iter.key()->setLine(this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y(),
+                                customLine->line().x2(), customLine->line().y2());
+        }
+        if(Iter.value() == true )
+        {
+            Iter.key()->setLine(customLine->line().x1(), customLine->line().y1(),
+                                this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y());
+        }
     }
 
-
-    if(startOrEnd == true)
-    {
-       customLine->setLine( customLine->line().x1(), customLine->line().y1(),
-                            this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y());
-    }
 
     update();
     QGraphicsItem::mouseReleaseEvent(event);
@@ -106,6 +119,8 @@ void customItem::setLine(QGraphicsLineItem *newLine, bool side)
 
     customLine = newLine;
     startOrEnd = side;
+
+    customLineList.insert(newLine,side);
 
     qDebug() << "customLine:\t" << customLine << "\tnewLine:\t" << newLine;
 }
