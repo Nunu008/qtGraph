@@ -80,4 +80,6 @@ void Dialog::test2()
     createEdge(start, "test", end);
     createEdge(start, "test", middel);
 
+
+
 }
