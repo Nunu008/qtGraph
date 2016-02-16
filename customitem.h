@@ -1,7 +1,7 @@
 #include <QPen>
 #include <QGraphicsItem>
 #include <QPainter>
-#include <QMap>
+#include <QHash>
 #include <QDebug>
 
 
@@ -30,7 +30,7 @@ public:
     bool startOrEnd;
     QGraphicsLineItem *customLine;
 
-    QMap<QGraphicsLineItem*, bool> customLineList;
+    QHash<QGraphicsLineItem*, bool> customLineList;
 
     QPointF mCenter;
     QString mName;

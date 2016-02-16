@@ -55,7 +55,7 @@ void customItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     Pressed = true;
 
-    QMapIterator<QGraphicsLineItem*, bool> Iter(customLineList);
+    QHashIterator<QGraphicsLineItem*, bool> Iter(customLineList);
 
     while(Iter.hasNext())
     {
@@ -86,7 +86,7 @@ void customItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     Pressed = false;
 
-    QMapIterator<QGraphicsLineItem*, bool> Iter(customLineList);
+    QHashIterator<QGraphicsLineItem*, bool> Iter(customLineList);
 
     while(Iter.hasNext())
     {
