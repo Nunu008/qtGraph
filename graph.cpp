@@ -1,46 +1,22 @@
-#include "dialog.h"
-#include "ui_dialog.h"
+#include "graph.h"
 
+long Graph::maxIdNodeGraph  = 0;
 
-#define High -200
-#define Low  200
-
-long Dialog::maxIdNode = 0;
-
-Dialog::Dialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Dialog)
+Graph::Graph()
 {
-    ui->setupUi(this);
-
-    scene = new QGraphicsScene(this);
-    ui->graphicsView->setScene(scene);
-
-    // anti-aliasing
-    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
-
-
-    //test1();
-    test2();
-    // test3();
 
 }
 
-Dialog::~Dialog()
-{
-    delete ui;
-}
-
-Node Dialog::createNode(QString name, long newId)
+Node Graph::createNode(QString name, long newId)
 {
 
     Node newNode;
 
-    newNode.setId(maxIdNode+1);
+    newNode.setId(maxIdNodeGraph+1);
 
-    nodes.insert(maxIdNode+1,newNode);
+    nodes.insert(maxIdNodeGraph+1,newNode);
 
-    maxIdNode++;
+    maxIdNodeGraph++;
 
     qsrand(qrand());
 
@@ -53,7 +29,7 @@ Node Dialog::createNode(QString name, long newId)
     return newNode;
 }
 
-void Dialog::createEdge(Node src, QString label, Node tgt)
+void Graph::createEdge(Node src, QString label, Node tgt)
 {
     src.createEdge(label, tgt);
 
@@ -66,7 +42,8 @@ void Dialog::createEdge(Node src, QString label, Node tgt)
 
 }
 
-void Dialog::refreshNodesEdges()
+
+void Graph::refreshNodesEdges()
 {
     QHashIterator<int,Node> Iter(nodes);
 
@@ -79,7 +56,8 @@ void Dialog::refreshNodesEdges()
     }
 }
 
-void Dialog::test1()
+
+void Graph::test1()
 {
     Node start  = createNode("start",0);
     Node end    = createNode("end",0);
@@ -88,7 +66,7 @@ void Dialog::test1()
 
 }
 
-void Dialog::test2()
+void Graph::test2()
 {
     Node start  = createNode("start",0);
     Node middel= createNode("middel",0);
@@ -104,7 +82,7 @@ void Dialog::test2()
 
 }
 
-void Dialog::test3()
+void Graph::test3()
 {
     Node start  = createNode("start",0);
     Node middel= createNode("middel",0);
@@ -126,6 +104,3 @@ void Dialog::test3()
     createEdge(nodeList.last(),"",nodeList.first());
 
 }
-
-
-

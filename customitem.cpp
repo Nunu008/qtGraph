@@ -35,7 +35,7 @@ customItem::customItem()
 QRectF customItem::boundingRect() const
 {
     // outer most edges
-    return QRectF(0,0,55,55);
+    return QRectF(0,0,75,75);
 }
 
 void customItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

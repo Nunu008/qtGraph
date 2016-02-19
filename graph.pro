@@ -16,11 +16,13 @@ SOURCES += main.cpp\
         dialog.cpp \
     node.cpp \
     nodeset.cpp \
-    customitem.cpp
+    customitem.cpp \
+    graph.cpp
 
 HEADERS  += dialog.h \
     node.h \
     nodeset.h \
-    customitem.h
+    customitem.h \
+    graph.h
 
 FORMS    += dialog.ui
