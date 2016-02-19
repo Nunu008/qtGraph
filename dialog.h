@@ -26,10 +26,11 @@ public:
     Node createNode(QString name,long newId);
 
     void createEdge(Node src, QString label, Node tgt);
-
+    void refreshNodesEdges();
 
     void test1();
     void test2();
+    void test3();
 
 private:
     Ui::Dialog *ui;

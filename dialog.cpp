@@ -16,9 +16,13 @@ Dialog::Dialog(QWidget *parent) :
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
+    // anti-aliasing
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
+
 
     //test1();
     test2();
+    // test3();
 
 }
 
@@ -62,6 +66,19 @@ void Dialog::createEdge(Node src, QString label, Node tgt)
 
 }
 
+void Dialog::refreshNodesEdges()
+{
+    QHashIterator<int,Node> Iter(nodes);
+
+    while(Iter.hasNext())
+    {
+        Iter.next();
+        qDebug() << Iter.key();
+        Iter.value().ellipse->refreshEdges();
+
+    }
+}
+
 void Dialog::test1()
 {
     Node start  = createNode("start",0);
@@ -77,9 +94,41 @@ void Dialog::test2()
     Node middel= createNode("middel",0);
     Node end    = createNode("end",0);
 
-    createEdge(start, "test", end);
+    createEdge(start,  "test", middel);
+    createEdge(middel, "test", end);
+
+    start.ellipse->refreshEdges();
+    middel.ellipse->refreshEdges();
+    end.ellipse->refreshEdges();
+
+
+}
+
+void Dialog::test3()
+{
+    Node start  = createNode("start",0);
+    Node middel= createNode("middel",0);
     createEdge(start, "test", middel);
+
+    QList<Node> nodeList;
+
+    nodeList.append(start);
+    nodeList.append(middel);
+
+
+    for(int i = 1; i< 10 ; i++)
+    {
+      Node newNode = createNode("",0);
+      createEdge(newNode,"",nodeList.last());
+      nodeList.append(newNode);
+    }
+
+    createEdge(nodeList.last(),"",nodeList.first());
+
 
 
 
 }
+
+
+

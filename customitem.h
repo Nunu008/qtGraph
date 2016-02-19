@@ -4,6 +4,7 @@
 #include <QHash>
 #include <QDebug>
 
+#include <QGraphicsScene>
 
 
 
@@ -23,6 +24,9 @@ public:
 
     qreal getXPosEllipse();
     qreal getYPosEllipse();
+
+    void doCollision();
+    void refreshEdges();
 public:
 
     bool Pressed;
@@ -34,11 +38,15 @@ public:
 
     QPointF mCenter;
     QString mName;
+    QRectF ellipse;
 
     enum ManagedLineEnd {
         StartOfLine,
         EndOfLine
     };
     ManagedLineEnd m_myLineEnd;
+
+private:
+    qreal angle, speed;
 };
 
