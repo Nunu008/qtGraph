@@ -3,13 +3,8 @@
 
 #include <QDialog>
 #include <QGraphicsScene>
-#include <QGraphicsItem>
 
-
-
-#include "node.h"
-#include "nodeset.h"
-
+#include "graph.h"
 
 namespace Ui {
 class Dialog;
@@ -23,25 +18,16 @@ public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
 
-    Node createNode(QString name,long newId);
-
-    void createEdge(Node src, QString label, Node tgt);
-    void refreshNodesEdges();
-
     void test1();
     void test2();
     void test3();
-
 private:
     Ui::Dialog *ui;
 
-    QGraphicsScene *scene;
+public:
+    static QGraphicsScene *scene;
 
-    static long maxIdNode;
 
-    NodeSet nodes;
-
-    Node node;
 };
 
 #endif // DIALOG_H

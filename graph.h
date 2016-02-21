@@ -1,37 +1,23 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#include <QGraphicsScene>
-#include <QGraphicsItem>
-
-#include "node.h"
 #include "nodeset.h"
+#include "dialog.h"
 
 class Graph
 {
 public:
     Graph();
 
-    Node createNode(QString name, long newId);
-    void createEdge(Node src, QString label, Node tgt);
-
-    void refreshNodesEdges();
-
-
-    void test1();
-    void test2();
-    void test3();
-
 private:
-
-    QGraphicsScene *scene;
-
-    static long maxIdNodeGraph;
-
     NodeSet nodes;
 
-    Node node;
+public:
+    Node createNode(QString name, long newId);
+    void createEdge(Node scr, QString label, Node tgt);
 
+private:
+    static long maxId;
 };
 
 #endif // GRAPH_H

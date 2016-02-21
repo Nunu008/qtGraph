@@ -1,6 +1,6 @@
 #include "customitem.h"
 
-customItem::customItem()
+CustomItem::CustomItem()
 {
     Pressed = false;
     setFlag(ItemIsMovable);
@@ -9,11 +9,9 @@ customItem::customItem()
     ellipse = boundingRect();
     mCenter = ellipse.center();
 
-
     // random start position
     int startX = 0;
     int startY = 0;
-
 
     if(qrand() % 1)
     {
@@ -27,112 +25,57 @@ customItem::customItem()
     }
 
     setPos(mapToParent(startX, startY));
-
-
-
 }
 
-QRectF customItem::boundingRect() const
+QRectF CustomItem::boundingRect() const
 {
-    // outer most edges
+    //outer most edges
     return QRectF(0,0,75,75);
 }
 
-void customItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void CustomItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    //QRectF ellipse = boundingRect();
-    //mCenter = ellipse.center();
-
     painter->setBrush(Qt::gray);
-
-
 
     if(Pressed)
     {
         QPen pen(Qt::red, 3);
         painter->setPen(pen);
-        //painter->drawEllipse(ellipse);
-        //painter->drawText(mCenter,mName);
 
     }
     else
     {
         QPen pen(Qt::black, 3);
         painter->setPen(pen);
-        //painter->drawEllipse(ellipse);
-        //painter->drawText(mCenter,mName);
     }
-
 
     painter->drawEllipse(ellipse);
     painter->drawText(mCenter,mName);
 }
 
-
-
-qreal customItem::getXPosEllipse()
+qreal CustomItem::getXPosEllipse()
 {
     return this->scenePos().x();
 }
-qreal customItem::getYPosEllipse()
+qreal CustomItem::getYPosEllipse()
 {
     return this->scenePos().y();
 }
 
-void customItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void CustomItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     Pressed = true;
-/*
-    QHashIterator<QGraphicsLineItem*, bool> Iter(customLineList);
 
-    while(Iter.hasNext())
-    {
-        Iter.next();
-        //qDebug()<< "_________________________________________________";
-        //qDebug()<< "mousePressEvent: " << Iter.key()<< " = " << Iter.value();
-
-        if(Iter.value() == false)
-        {
-            Iter.key()->setLine(this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y(),
-                                Iter.key()->line().x2(),Iter.key()->line().y2());
-        }
-        if(Iter.value() == true )
-        {
-            Iter.key()->setLine(Iter.key()->line().x1(),Iter.key()->line().y1(),
-                                this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y());
-        }
-    }
-*/
     refreshEdges();
     update();
     QGraphicsItem::mousePressEvent(event);
 
 }
 
-void customItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void CustomItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     Pressed = false;
-/*
-    QHashIterator<QGraphicsLineItem*, bool> Iter(customLineList);
 
-    while(Iter.hasNext())
-    {
-        Iter.next();
-        //qDebug()<< "_________________________________________________";
-        //qDebug()<< "mouseReleaseEvent: " << Iter.key()<< " = " << Iter.value();
-
-        if(Iter.value() == false)
-        {
-            Iter.key()->setLine(this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y(),
-                                Iter.key()->line().x2(),Iter.key()->line().y2());
-        }
-        if(Iter.value() == true )
-        {
-            Iter.key()->setLine(Iter.key()->line().x1(),Iter.key()->line().y1(),
-                                this->scenePos().x() + mCenter.x(),this->scenePos().y()+ mCenter.y());
-        }
-    }
-*/
     refreshEdges();
 
     update();
@@ -140,7 +83,7 @@ void customItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 }
 
 
-void customItem::setLine(QGraphicsLineItem *newLine, bool side)
+void CustomItem::setLine(QGraphicsLineItem *newLine, bool side)
 {
     //qDebug() << "-------------------------------------------";
     //qDebug() << "&customLine:\t" << &customLine << "\t&newLine:\t" << &newLine;
@@ -157,7 +100,7 @@ void customItem::setLine(QGraphicsLineItem *newLine, bool side)
 }
 
 
-void customItem::doCollision()
+void CustomItem::doCollision()
 {
     // get a new postion
 
@@ -177,7 +120,7 @@ void customItem::doCollision()
     }
 }
 
-void customItem::refreshEdges()
+void CustomItem::refreshEdges()
 {
     QHashIterator<QGraphicsLineItem*, bool> Iter(customLineList);
 
@@ -199,3 +142,4 @@ void customItem::refreshEdges()
         }
     }
 }
+

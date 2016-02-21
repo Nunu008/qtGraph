@@ -1,17 +1,18 @@
+#ifndef CUSTOMITEM_H
+#define CUSTOMITEM_H
+
 #include <QPen>
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QHash>
 #include <QDebug>
-
 #include <QGraphicsScene>
 
 
-
-class customItem : public QGraphicsItem
+class CustomItem : public QGraphicsItem
 {
 public:
-    customItem();
+    CustomItem();
 
     QRectF boundingRect() const;
 
@@ -27,12 +28,15 @@ public:
 
     void doCollision();
     void refreshEdges();
-public:
 
+private:
+    qreal angel, speed;
+
+public:
     bool Pressed;
 
     bool startOrEnd;
-    QGraphicsLineItem *customLine;
+    QGraphicsLineItem * customLine;
 
     QHash<QGraphicsLineItem*, bool> customLineList;
 
@@ -46,7 +50,8 @@ public:
     };
     ManagedLineEnd m_myLineEnd;
 
-private:
-    qreal angle, speed;
+
+
 };
 
+#endif // CUSTOMITEM_H
