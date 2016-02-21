@@ -17,7 +17,7 @@ public:
 
 private:
     long id;
-    QHash<int,NodeSet> neighbours;
+    QHash<QString,NodeSet> neighbours;
 
 
 public:

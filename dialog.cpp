@@ -12,9 +12,10 @@ Dialog::Dialog(QWidget *parent) :
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
-    test1();
-    test2();
+    //test1();
+    //test2();
     //test3();
+    test4();
 }
 
 Dialog::~Dialog()
@@ -83,4 +84,30 @@ void Dialog::test3()
 
     nodeList.first().ellipse->refreshEdges();
     nodeList.last().ellipse->refreshEdges();
+}
+
+void Dialog::test4()
+{
+    Graph graph;
+
+    Node x1 = graph.createNode("x1",0);
+    Node y1 = graph.createNode("y1",0);
+    Node y2 = graph.createNode("y2",0);
+    Node y3 = graph.createNode("y3",0);
+
+    graph.createEdge(x1,"x1_To_y1",y1);
+    graph.createEdge(y1,"y1_To_x1",x1);
+
+    graph.createEdge(x1,"x1_To_y2",y2);
+    graph.createEdge(y2,"y2_To_x1",x1);
+
+    graph.createEdge(x1,"x1_To_y3",y3);
+    graph.createEdge(y3,"y3_To_x1",x1);
+
+
+
+    x1.ellipse->refreshEdges();
+    y1.ellipse->refreshEdges();
+    y2.ellipse->refreshEdges();
+    y3.ellipse->refreshEdges();
 }
