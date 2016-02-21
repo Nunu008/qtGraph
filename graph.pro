@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-02-08T20:40:49
+# Project created by QtCreator 2016-02-19T18:49:06
 #
 #-------------------------------------------------
 
@@ -14,15 +14,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         dialog.cpp \
-    node.cpp \
+    graph.cpp \
     nodeset.cpp \
-    customitem.cpp \
-    graph.cpp
+    node.cpp \
+    customitem.cpp
 
 HEADERS  += dialog.h \
-    node.h \
+    graph.h \
     nodeset.h \
-    customitem.h \
-    graph.h
+    node.h \
+    customitem.h
 
 FORMS    += dialog.ui

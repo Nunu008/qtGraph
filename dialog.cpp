@@ -26,8 +26,8 @@ void Dialog::test1()
 {
     Graph graph;
 
-    Node start = graph.createNode("start",0);
-    Node end   = graph.createNode("end",0);
+    Node start = graph.createNode("s",0);
+    Node end   = graph.createNode("e",0);
 
     graph.createEdge(start,"test",end);
     graph.createEdge(end,  "test",start);
@@ -41,9 +41,9 @@ void Dialog::test2()
 {
     Graph graph;
 
-    Node start = graph.createNode("start",0);
-    Node middel = graph.createNode("middel",0);
-    Node end   = graph.createNode("end",0);
+    Node start = graph.createNode("s",0);
+    Node middel = graph.createNode("m",0);
+    Node end   = graph.createNode("e",0);
 
     graph.createEdge(start, "test",middel);
     graph.createEdge(middel,"test",start);
@@ -61,8 +61,8 @@ void Dialog::test3()
 {
     Graph graph;
 
-    Node start  = graph.createNode("start",0);
-    Node middel = graph.createNode("middel",0);
+    Node start  = graph.createNode("s",0);
+    Node middel = graph.createNode("m",0);
     graph.createEdge(start, "test", middel);
 
     QList<Node> nodeList;
