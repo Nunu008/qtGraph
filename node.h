@@ -1,8 +1,12 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <QHash>
 
+#include "nodeset.h"
 #include "customitem.h"
+
+class NodeSet;
 
 class Node
 {
@@ -13,6 +17,8 @@ public:
 
 private:
     long id;
+    QHash<int,NodeSet> neighbours;
+
 
 public:
     CustomItem *ellipse;
