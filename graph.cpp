@@ -8,7 +8,7 @@ Graph::Graph()
 
 }
 
-Node Graph::createNode(QString name, long newId)
+Node Graph::createNode(QString label)
 {
     //logic elements
     Node newNode;
@@ -16,10 +16,11 @@ Node Graph::createNode(QString name, long newId)
     newNode.setId(maxId+1);
     nodes.insert(maxId+1,newNode);
     maxId++;
+    newNode.setLabel(label);
 
     //gui elements
     newNode.ellipse = new CustomItem();
-    newNode.ellipse->mName = name;
+    newNode.ellipse->mName = label;
     Dialog::scene->addItem(newNode.ellipse);
 
 
@@ -39,3 +40,4 @@ void Graph::createEdge(Node src, QString label, Node tgt)
     tgt.ellipse->setLine(src.ellipse->customLine,true);
 
 }
+

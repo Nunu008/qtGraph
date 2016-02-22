@@ -15,7 +15,8 @@ Dialog::Dialog(QWidget *parent) :
     //test1();
     //test2();
     //test3();
-    test4();
+    //test4();
+    test5();
 }
 
 Dialog::~Dialog()
@@ -27,8 +28,8 @@ void Dialog::test1()
 {
     Graph graph;
 
-    Node start = graph.createNode("s",0);
-    Node end   = graph.createNode("e",0);
+    Node start = graph.createNode("s");
+    Node end   = graph.createNode("e");
 
     graph.createEdge(start,"test",end);
     graph.createEdge(end,  "test",start);
@@ -42,9 +43,9 @@ void Dialog::test2()
 {
     Graph graph;
 
-    Node start = graph.createNode("s",0);
-    Node middel = graph.createNode("m",0);
-    Node end   = graph.createNode("e",0);
+    Node start  = graph.createNode("s");
+    Node middel = graph.createNode("m");
+    Node end    = graph.createNode("e");
 
     graph.createEdge(start, "test",middel);
     graph.createEdge(middel,"test",start);
@@ -62,8 +63,8 @@ void Dialog::test3()
 {
     Graph graph;
 
-    Node start  = graph.createNode("s",0);
-    Node middel = graph.createNode("m",0);
+    Node start  = graph.createNode("s");
+    Node middel = graph.createNode("m");
     graph.createEdge(start, "test", middel);
 
     QList<Node> nodeList;
@@ -74,7 +75,7 @@ void Dialog::test3()
 
     for(int i = 1; i< 10 ; i++)
     {
-      Node newNode = graph.createNode("",0);
+      Node newNode = graph.createNode("");
       graph.createEdge(newNode,"",nodeList.last());
       nodeList.append(newNode);
       newNode.ellipse->refreshEdges();
@@ -90,10 +91,10 @@ void Dialog::test4()
 {
     Graph graph;
 
-    Node x1 = graph.createNode("x1",0);
-    Node y1 = graph.createNode("y1",0);
-    Node y2 = graph.createNode("y2",0);
-    Node y3 = graph.createNode("y3",0);
+    Node x1 = graph.createNode("x1");
+    Node y1 = graph.createNode("y1");
+    Node y2 = graph.createNode("y2");
+    Node y3 = graph.createNode("y3");
 
     graph.createEdge(x1,"x1_To_y1",y1);
     graph.createEdge(y1,"y1_To_x1",x1);
@@ -110,4 +111,22 @@ void Dialog::test4()
     y1.ellipse->refreshEdges();
     y2.ellipse->refreshEdges();
     y3.ellipse->refreshEdges();
+}
+
+
+void Dialog::test5()
+{
+    Graph graph;
+
+    Node m1       = graph.createNode("missionar");
+
+    Node leftBank = graph.createNode("bank");
+    leftBank.setNodeAttribute("side","left");
+
+
+    graph.createEdge(m1,"at", leftBank);
+
+    m1.ellipse->refreshEdges();
+    leftBank.ellipse->refreshEdges();
+
 }

@@ -13,11 +13,12 @@ private:
     NodeSet nodes;
 
 public:
-    Node createNode(QString name, long newId);
+    Node createNode(QString name);
     void createEdge(Node scr, QString label, Node tgt);
 
 private:
     static long maxId;
+
 };
 
 #endif // GRAPH_H
