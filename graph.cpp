@@ -27,7 +27,7 @@ Node Graph::createNode(QString label)
     return newNode;
 }
 
-void Graph::createEdge(Node src, QString label, Node tgt)
+void Graph::createEdge(Node& src, const QString & label, Node & tgt)
 {
     //logic elements
     src.createEdge(label, tgt);

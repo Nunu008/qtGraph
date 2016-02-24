@@ -13,7 +13,9 @@ class Node
 public:
     Node();
     void setId(const long &value);
-    void createEdge(QString label, Node tgt);
+    long getId();
+
+    void createEdge(const QString & label, Node & tgt);
 
     void setLabel(QString label);
 
@@ -29,6 +31,7 @@ public:
     CustomItem *ellipse;
     QHash<QString,NodeSet> neighbours;
     QHash<QString,QString> nodeAttribute;
+
 
     QString getNodeAttribute(QString attrName);
     void setNodeAttribute(QString attrName, QString value);

@@ -1,8 +1,8 @@
 #ifndef NODESET_H
 #define NODESET_H
 
-#include<QHash>
-#include<QHashNode>
+#include <QHash>
+#include <QHashNode>
 #include "node.h"
 
 class Node;

@@ -10,13 +10,20 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
 
     scene = new QGraphicsScene(this);
-    ui->graphicsView->setScene(scene);
+    qhashModel = new QStandardItemModel(this);
 
-    //test1();
+    QStringList header;
+    header<< "ID"<<"Node label";
+    qhashModel->setHorizontalHeaderLabels(header);
+
+    ui->treeView->setModel(qhashModel);
+    ui->graphicsView->setScene(scene);
+    ui->treeView->resizeColumnToContents(0);
+    test1();
     //test2();
     //test3();
     //test4();
-    test5();
+    //test5();
 }
 
 Dialog::~Dialog()
@@ -24,18 +31,48 @@ Dialog::~Dialog()
     delete ui;
 }
 
+
 void Dialog::test1()
 {
+    /*
     Graph graph;
 
     Node start = graph.createNode("s");
     Node end   = graph.createNode("e");
 
-    graph.createEdge(start,"test",end);
-    graph.createEdge(end,  "test",start);
+    graph.createEdge(start,"test1",end);
+    graph.createEdge(end,  "test2",start);
 
     start.ellipse->refreshEdges();
     end.ellipse->refreshEdges();
+   */
+
+    Graph *graph = new Graph();
+    Node start = graph->createNode("s");
+    Node end   = graph->createNode("e");
+
+    graph->createEdge(start,"test1",end);
+    //graph->createEdge(end,  "test2",start);
+
+    start.ellipse->refreshEdges();
+    end.ellipse->refreshEdges();
+//    qhashModel->setColumnCount(2);
+//    qhashModel->setRowCount(start.neighbours.count());
+
+
+
+/*
+    int i=0;
+    QHashIterator<QString,NodeSet> Iter(start.neighbours);
+    while(Iter.hasNext())
+    {
+        Iter.next();
+
+        //qhashModel->setData(qhashModel->index(i, 0), start.neighbours.value());
+         i++;
+    }
+*/
+
 }
 
 

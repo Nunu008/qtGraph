@@ -2,7 +2,12 @@
 #define DIALOG_H
 
 #include <QDialog>
+#include <QtGui>
+#include <QtCore>
 #include <QGraphicsScene>
+#include <QStandardItemModel>
+#include <QStandardItem>
+
 
 #include "graph.h"
 
@@ -25,6 +30,7 @@ public:
     void test5();
 private:
     Ui::Dialog *ui;
+    QStandardItemModel *qhashModel;
 
 public:
     static QGraphicsScene *scene;

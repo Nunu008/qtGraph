@@ -14,7 +14,7 @@ private:
 
 public:
     Node createNode(QString name);
-    void createEdge(Node scr, QString label, Node tgt);
+    void createEdge(Node& src, const QString & label, Node & tgt);
 
 private:
     static long maxId;
