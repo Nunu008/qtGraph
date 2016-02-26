@@ -44,6 +44,8 @@ public:
 
     Graph *graph;
 
+protected:
+    virtual void wheelEvent(QWheelEvent* event);
 
 };
 

@@ -33,11 +33,11 @@ Dialog::Dialog(QWidget *parent) :
 
     //test1();
     //test2();
-    //test3();
+    test3();
     //test4();
     //test5();
     //test6();
-    test7();
+    //test7();
 }
 
 Dialog::~Dialog()
@@ -45,6 +45,22 @@ Dialog::~Dialog()
     delete ui;
 }
 
+
+void Dialog::wheelEvent(QWheelEvent *event){
+
+        ui->graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+        // Scale the view / do the zoom
+        double scaleFactor = 1.15;
+        if(event->delta() > 0) {
+            // Zoom in
+            ui->graphicsView-> scale(scaleFactor, scaleFactor);
+
+        } else {
+            // Zooming out
+             ui->graphicsView->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
+        }
+
+}
 
 void Dialog::test1()
 {
