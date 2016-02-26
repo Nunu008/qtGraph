@@ -2,38 +2,48 @@
 #define NODE_H
 
 #include <QHash>
+#include <QString>
+#include <QStandardItemModel>
+#include <QDebug>
 
 #include "nodeset.h"
 #include "customitem.h"
 
 class NodeSet;
+class CustomItem;
 
 class Node
 {
 public:
     Node();
+    ~Node();
     void setId(const long &value);
     long getId();
 
-    void createEdge(const QString & label, Node & tgt);
+    void createEdge(const QString & label, Node *tgt);
 
     void setLabel(QString label);
+    QString getLabel() const;
 
-    NodeSet getNeighbours(QString label);
+    //QHash<QString,NodeSet> *getNeighbours();
+    QHash<QString,NodeSet> getNeighbours() const;
+    NodeSet  getNeighbours(QString label);
 
 private:
     long id;
 
 
-    QString label;
+
 
 public:
+    QString label;
     CustomItem *ellipse;
     QHash<QString,NodeSet> neighbours;
     QHash<QString,QString> nodeAttribute;
 
+    QHash<QString,QString> getNodeAttribute()const;
+    QString getNodeAttribute(QString attrName) const;
 
-    QString getNodeAttribute(QString attrName);
     void setNodeAttribute(QString attrName, QString value);
 };
 

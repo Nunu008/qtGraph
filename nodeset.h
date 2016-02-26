@@ -7,7 +7,7 @@
 
 class Node;
 
-class NodeSet : public QHash<int,Node>
+class NodeSet : public QHash<int,Node*>
 {
 public:
     NodeSet();

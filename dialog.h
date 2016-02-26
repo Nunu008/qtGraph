@@ -1,6 +1,7 @@
 #ifndef DIALOG_H
 #define DIALOG_H
 
+#include <QDebug>
 #include <QDialog>
 #include <QtGui>
 #include <QtCore>
@@ -10,10 +11,13 @@
 
 
 #include "graph.h"
+#include "node.h"
 
 namespace Ui {
 class Dialog;
 }
+
+class Graph;
 
 class Dialog : public QDialog
 {
@@ -28,12 +32,17 @@ public:
     void test3();
     void test4();
     void test5();
+    void test6();
+    void test7();
 private:
     Ui::Dialog *ui;
-    QStandardItemModel *qhashModel;
+
 
 public:
-    static QGraphicsScene *scene;
+    static QGraphicsScene     *scene;
+    static QStandardItemModel *qhashModel;
+
+    Graph *graph;
 
 
 };

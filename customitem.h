@@ -8,6 +8,9 @@
 #include <QDebug>
 #include <QGraphicsScene>
 
+#include <nodeset.h>
+
+class NodeSet;
 
 class CustomItem : public QGraphicsItem
 {
@@ -29,6 +32,9 @@ public:
     void doCollision();
     void refreshEdges();
 
+    void setNeighbours(QHash<QString,NodeSet> *neighbours);
+    void refreshTreeView();
+
 private:
     qreal angel, speed;
 
@@ -43,6 +49,8 @@ public:
     QPointF mCenter;
     QString mName;
     QRectF ellipse;
+
+    QHash<QString,NodeSet> *neighboursEllipse ;
 
     enum ManagedLineEnd {
         StartOfLine,

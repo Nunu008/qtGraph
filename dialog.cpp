@@ -2,6 +2,7 @@
 #include "ui_dialog.h"
 
 QGraphicsScene* Dialog::scene = NULL;
+QStandardItemModel *Dialog::qhashModel = NULL;
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -12,18 +13,31 @@ Dialog::Dialog(QWidget *parent) :
     scene = new QGraphicsScene(this);
     qhashModel = new QStandardItemModel(this);
 
+    qhashModel->setColumnCount(2);
+    qhashModel->setRowCount(5);
+
     QStringList header;
     header<< "ID"<<"Node label";
     qhashModel->setHorizontalHeaderLabels(header);
 
+
+    qhashModel->setData(qhashModel->index(0, 0),1);
+    qhashModel->setData(qhashModel->index(0, 1),"Test");
+
+
     ui->treeView->setModel(qhashModel);
     ui->graphicsView->setScene(scene);
     ui->treeView->resizeColumnToContents(0);
-    test1();
+
+    graph = new Graph();
+
+    //test1();
     //test2();
     //test3();
     //test4();
     //test5();
+    //test6();
+    test7();
 }
 
 Dialog::~Dialog()
@@ -34,42 +48,40 @@ Dialog::~Dialog()
 
 void Dialog::test1()
 {
-    /*
-    Graph graph;
 
-    Node start = graph.createNode("s");
-    Node end   = graph.createNode("e");
-
-    graph.createEdge(start,"test1",end);
-    graph.createEdge(end,  "test2",start);
-
-    start.ellipse->refreshEdges();
-    end.ellipse->refreshEdges();
-   */
-
-    Graph *graph = new Graph();
-    Node start = graph->createNode("s");
-    Node end   = graph->createNode("e");
+    Node *start = graph->createNode("s");
+    Node *end   = graph->createNode("e");
 
     graph->createEdge(start,"test1",end);
-    //graph->createEdge(end,  "test2",start);
 
-    start.ellipse->refreshEdges();
-    end.ellipse->refreshEdges();
-//    qhashModel->setColumnCount(2);
-//    qhashModel->setRowCount(start.neighbours.count());
+    start->ellipse->refreshEdges();
+    end->ellipse->refreshEdges();
+
+/*    qhashModel->setColumnCount(2);
+    qhashModel->setRowCount(start.neighbours.count())*/;
 
 
 
-/*
-    int i=0;
+
+   // int i=0;
+   /*
     QHashIterator<QString,NodeSet> Iter(start.neighbours);
     while(Iter.hasNext())
     {
         Iter.next();
 
-        //qhashModel->setData(qhashModel->index(i, 0), start.neighbours.value());
-         i++;
+        //qhashModel->setData(qhashModel->index(i, 0), Iter.value());
+        //i++;
+
+        // typ of edge
+        qDebug()<<Iter.key();
+
+        // label of neighbours
+        foreach(int i,Iter.value().keys())
+        {
+            qDebug()<< Iter.value()[i].label;
+        }
+
     }
 */
 
@@ -78,33 +90,32 @@ void Dialog::test1()
 
 void Dialog::test2()
 {
-    Graph graph;
 
-    Node start  = graph.createNode("s");
-    Node middel = graph.createNode("m");
-    Node end    = graph.createNode("e");
+    Node *start  = graph->createNode("s");
+    Node *middel = graph->createNode("m");
+    Node *end    = graph->createNode("e");
 
-    graph.createEdge(start, "test",middel);
-    graph.createEdge(middel,"test",start);
+    graph->createEdge(start, "test",middel);
+    graph->createEdge(middel,"test",start);
 
-    graph.createEdge(middel,"test",end);
-    graph.createEdge(end,   "test",middel);
+    graph->createEdge(middel,"test",end);
+    graph->createEdge(end,   "test",middel);
 
-    start.ellipse->refreshEdges();
-    middel.ellipse->refreshEdges();
-    end.ellipse->refreshEdges();
+    start->ellipse->refreshEdges();
+    middel->ellipse->refreshEdges();
+    end->ellipse->refreshEdges();
 }
+
 
 
 void Dialog::test3()
 {
-    Graph graph;
 
-    Node start  = graph.createNode("s");
-    Node middel = graph.createNode("m");
-    graph.createEdge(start, "test", middel);
+    Node *start  = graph->createNode("s");
+    Node *middel = graph->createNode("m");
+    graph->createEdge(start, "test", middel);
 
-    QList<Node> nodeList;
+    QList<Node*> nodeList;
 
     nodeList.append(start);
     nodeList.append(middel);
@@ -112,58 +123,139 @@ void Dialog::test3()
 
     for(int i = 1; i< 10 ; i++)
     {
-      Node newNode = graph.createNode("");
-      graph.createEdge(newNode,"",nodeList.last());
+      Node *newNode = graph->createNode("x");
+      graph->createEdge(newNode,"x",nodeList.last());
       nodeList.append(newNode);
-      newNode.ellipse->refreshEdges();
+      newNode->ellipse->refreshEdges();
     }
 
-    graph.createEdge(nodeList.last(),"",nodeList.first());
+    graph->createEdge(nodeList.last(),"",nodeList.first());
 
-    nodeList.first().ellipse->refreshEdges();
-    nodeList.last().ellipse->refreshEdges();
+    nodeList.first()->ellipse->refreshEdges();
+    nodeList.last()->ellipse->refreshEdges();
 }
+
+
 
 void Dialog::test4()
 {
-    Graph graph;
-
-    Node x1 = graph.createNode("x1");
-    Node y1 = graph.createNode("y1");
-    Node y2 = graph.createNode("y2");
-    Node y3 = graph.createNode("y3");
-
-    graph.createEdge(x1,"x1_To_y1",y1);
-    graph.createEdge(y1,"y1_To_x1",x1);
-
-    graph.createEdge(x1,"x1_To_y2",y2);
-    graph.createEdge(y2,"y2_To_x1",x1);
-
-    graph.createEdge(x1,"x1_To_y3",y3);
-    graph.createEdge(y3,"y3_To_x1",x1);
 
 
+    Node *x1 = graph->createNode("x1");
+    Node *y1 = graph->createNode("y1");
+    Node *y2 = graph->createNode("y2");
+    Node *y3 = graph->createNode("y3");
 
-    x1.ellipse->refreshEdges();
-    y1.ellipse->refreshEdges();
-    y2.ellipse->refreshEdges();
-    y3.ellipse->refreshEdges();
+    graph->createEdge(x1,"x1_To_y1",y1);
+    graph->createEdge(y1,"y1_To_x1",x1);
+
+    graph->createEdge(x1,"x1_To_y2",y2);
+    graph->createEdge(y2,"y2_To_x1",x1);
+
+    graph->createEdge(x1,"x1_To_y3",y3);
+    graph->createEdge(y3,"y3_To_x1",x1);
+
+
+
+    x1->ellipse->refreshEdges();
+    y1->ellipse->refreshEdges();
+    y2->ellipse->refreshEdges();
+    y3->ellipse->refreshEdges();
 }
+
 
 
 void Dialog::test5()
 {
-    Graph graph;
-
-    Node m1       = graph.createNode("missionar");
-
-    Node leftBank = graph.createNode("bank");
-    leftBank.setNodeAttribute("side","left");
 
 
-    graph.createEdge(m1,"at", leftBank);
 
-    m1.ellipse->refreshEdges();
-    leftBank.ellipse->refreshEdges();
+    Node *m1       = graph->createNode("missionar");
+
+    Node *leftBank = graph->createNode("bank");
+
+    leftBank->setNodeAttribute("side","left");
+
+
+    graph->createEdge(m1,"at", leftBank);
+
+
+    m1->ellipse->refreshEdges();
+    leftBank->ellipse->refreshEdges();
+
 
 }
+
+
+void Dialog::test6()
+{
+    //start graph
+
+    Node *leftBank = graph->createNode("l");
+    Node *rightBank= graph->createNode("r");
+
+    leftBank->setNodeAttribute("side","left");
+    rightBank->setNodeAttribute("side","right");
+
+
+    Node *boat = graph->createNode("boat");
+
+    graph->createEdge(boat,"at", leftBank);
+
+
+    Node *m1       = graph->createNode("m1");
+    Node *m2       = graph->createNode("m2");
+    Node *m3       = graph->createNode("m3");
+
+    graph->createEdge(m1,"at", leftBank);
+    graph->createEdge(m2,"at", leftBank);
+    graph->createEdge(m3,"at", leftBank);
+
+
+    Node *c1       = graph->createNode("c1");
+    Node *c2       = graph->createNode("c2");
+    Node *c3       = graph->createNode("c3");
+
+    graph->createEdge(c1,"at", leftBank);
+    graph->createEdge(c2,"at", leftBank);
+    graph->createEdge(c3,"at", leftBank);
+
+
+
+    leftBank->ellipse->refreshEdges();
+    rightBank->ellipse->refreshEdges();
+
+    boat->ellipse->refreshEdges();
+
+    m1->ellipse->refreshEdges();
+    m2->ellipse->refreshEdges();
+    m3->ellipse->refreshEdges();
+
+    c1->ellipse->refreshEdges();
+    c2->ellipse->refreshEdges();
+    c3->ellipse->refreshEdges();
+}
+
+
+
+
+void Dialog::test7()
+{
+
+    //first graph
+    Node *start = graph->createNode("s");
+    Node *end   = graph->createNode("e");
+
+    graph->createEdge(start,"test1",end);
+
+    start->ellipse->refreshEdges();
+    end->ellipse->refreshEdges();
+
+    //clone graph
+
+    Graph *g2 = graph->clone();
+
+
+    qDebug()<<"pause";
+}
+

@@ -1,4 +1,5 @@
 #include "customitem.h"
+#include "nodeset.h"
 
 CustomItem::CustomItem()
 {
@@ -25,6 +26,7 @@ CustomItem::CustomItem()
     }
 
     setPos(mapToParent(startX, startY));
+
 }
 
 QRectF CustomItem::boundingRect() const
@@ -66,7 +68,11 @@ void CustomItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     Pressed = true;
 
+
     refreshEdges();
+
+    refreshTreeView();
+
     update();
     QGraphicsItem::mousePressEvent(event);
 
@@ -85,18 +91,10 @@ void CustomItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
 void CustomItem::setLine(QGraphicsLineItem *newLine, bool side)
 {
-    //qDebug() << "-------------------------------------------";
-    //qDebug() << "&customLine:\t" << &customLine << "\t&newLine:\t" << &newLine;
-    //qDebug() << "customLine:\t" << customLine << "\tnewLine:\t" << newLine;
-
     customLineList.insert(newLine,side);
 
     customLine = newLine;
     startOrEnd = side;
-
-
-
-    //qDebug() << "customLine:\t" << customLine << "\tnewLine:\t" << newLine;
 }
 
 
@@ -127,8 +125,6 @@ void CustomItem::refreshEdges()
     while(Iter.hasNext())
     {
         Iter.next();
-        //qDebug()<< "_________________________________________________";
-        //qDebug()<< "mousePressEvent: " << Iter.key()<< " = " << Iter.value();
 
         if(Iter.value() == false)
         {
@@ -143,3 +139,35 @@ void CustomItem::refreshEdges()
     }
 }
 
+void CustomItem::setNeighbours(QHash<QString,NodeSet> *neighbours)
+{
+    neighboursEllipse = neighbours;
+}
+
+void CustomItem::refreshTreeView()
+{
+    //QHash<QString,NodeSet> nE = *neighboursEllipse;
+
+
+
+    //QHashIterator<QString,NodeSet> Iter( *neighboursEllipse);
+    /*
+       while(Iter.hasNext())
+       {
+        Iter.next();
+
+        //qhashModel->setData(qhashModel->index(i, 0), Iter.value());
+        //i++;
+
+        // typ of edge
+        qDebug()<<Iter.key();
+
+        // label of neighbours
+//        foreach(int i,Iter.value().keys())
+//        {
+//            qDebug()<< Iter.value()[i].label;
+//        }
+
+    }
+*/
+}
