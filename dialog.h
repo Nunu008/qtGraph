@@ -34,6 +34,9 @@ public:
     void test5();
     void test6();
     void test7();
+    void test8();
+    void test9();
+
 private:
     Ui::Dialog *ui;
 
@@ -43,6 +46,7 @@ public:
     static QStandardItemModel *qhashModel;
 
     Graph *graph;
+
 
 protected:
     virtual void wheelEvent(QWheelEvent* event);

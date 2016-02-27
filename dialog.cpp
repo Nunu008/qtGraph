@@ -14,20 +14,12 @@ Dialog::Dialog(QWidget *parent) :
     qhashModel = new QStandardItemModel(this);
 
     qhashModel->setColumnCount(2);
-    qhashModel->setRowCount(5);
+    qhashModel->setRowCount(12);
 
     QStringList header;
     header<< "ID"<<"Node label";
     qhashModel->setHorizontalHeaderLabels(header);
 
-
-    qhashModel->setData(qhashModel->index(0, 0),1);
-    qhashModel->setData(qhashModel->index(0, 1),"Test");
-
-
-    ui->treeView->setModel(qhashModel);
-    ui->graphicsView->setScene(scene);
-    ui->treeView->resizeColumnToContents(0);
 
     graph = new Graph();
 
@@ -38,6 +30,27 @@ Dialog::Dialog(QWidget *parent) :
     //test5();
     //test6();
     //test7();
+    //test8();
+    //test9();
+
+
+    int i=0;
+    QHashIterator<int,Node*> Iter(graph->getNodes());
+    while(Iter.hasNext())
+    {
+        Iter.next();
+        qDebug()<<Iter.key() <<" : " << Iter.value()->getLabel();
+        qhashModel->setData(qhashModel->index(i, 0),Iter.key());
+        qhashModel->setData(qhashModel->index(i, 1),Iter.value()->getLabel());
+        i++;
+    }
+
+
+
+    ui->treeView->setModel(qhashModel);
+    ui->graphicsView->setScene(scene);
+    ui->treeView->resizeColumnToContents(0);
+
 }
 
 Dialog::~Dialog()
@@ -270,8 +283,59 @@ void Dialog::test7()
     //clone graph
 
     Graph *g2 = graph->clone();
-
-
-    qDebug()<<"pause";
 }
 
+
+void Dialog::test8()
+{
+
+    Node *start  = graph->createNode("s");
+    Node *middel = graph->createNode("m");
+    graph->createEdge(start, "test", middel);
+
+    QList<Node*> nodeList;
+
+    nodeList.append(start);
+    nodeList.append(middel);
+
+
+    for(int i = 1; i< 10 ; i++)
+    {
+      Node *newNode = graph->createNode("x");
+      graph->createEdge(newNode,"x",nodeList.last());
+      nodeList.append(newNode);
+      newNode->ellipse->refreshEdges();
+    }
+
+    graph->createEdge(nodeList.last(),"",nodeList.first());
+
+    nodeList.first()->ellipse->refreshEdges();
+    nodeList.last()->ellipse->refreshEdges();
+
+
+    //clone graph
+
+    Graph *g2 = graph->clone();
+
+}
+
+void Dialog::test9()
+{
+
+
+    Node *start = graph->createNode("s");
+    Node *end   = graph->createNode("e");
+
+    graph->createEdge(start,"test1",end);
+
+    start->ellipse->refreshEdges();
+    end->ellipse->refreshEdges();
+
+    //clone graph
+
+    //Graph *g2 = graph->clone();
+
+    //Graph *overallGraph = new Graph();
+
+
+}

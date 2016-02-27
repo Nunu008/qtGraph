@@ -1,5 +1,7 @@
 #include "customitem.h"
 #include "nodeset.h"
+#include "dialog.h"
+
 
 CustomItem::CustomItem()
 {
@@ -26,6 +28,8 @@ CustomItem::CustomItem()
     }
 
     setPos(mapToParent(startX, startY));
+
+
 
 }
 
@@ -139,35 +143,41 @@ void CustomItem::refreshEdges()
     }
 }
 
-void CustomItem::setNeighbours(QHash<QString,NodeSet> *neighbours)
+void CustomItem::setNeighbours(QHash<QString, NodeSet> neighbours)
 {
     neighboursEllipse = neighbours;
 }
 
+QHash<QString,NodeSet>  CustomItem::getNeighbours()
+{
+    return neighboursEllipse;
+}
+
 void CustomItem::refreshTreeView()
 {
-    //QHash<QString,NodeSet> nE = *neighboursEllipse;
+
+    Dialog::qhashModel->clear();
+    Dialog::qhashModel->setColumnCount(2);
+    Dialog::qhashModel->setRowCount(20);
+
+    QStringList header;
+    header<< "ID"<<"Node label";
+    Dialog::qhashModel->setHorizontalHeaderLabels(header);
 
 
-
-    //QHashIterator<QString,NodeSet> Iter( *neighboursEllipse);
-    /*
-       while(Iter.hasNext())
-       {
+    int i=0;
+    QHashIterator<QString,NodeSet> Iter(this->getNeighbours());
+    while(Iter.hasNext())
+    {
         Iter.next();
-
-        //qhashModel->setData(qhashModel->index(i, 0), Iter.value());
-        //i++;
-
-        // typ of edge
-        qDebug()<<Iter.key();
-
-        // label of neighbours
-//        foreach(int i,Iter.value().keys())
-//        {
-//            qDebug()<< Iter.value()[i].label;
-//        }
-
+        QHashIterator<int,Node*> Iter2(Iter.value());
+        while(Iter2.hasNext())
+        {
+            Iter2.next();
+            Dialog::qhashModel->setData(Dialog::qhashModel->index(i, 0),Iter2.key());
+            Dialog::qhashModel->setData(Dialog::qhashModel->index(i, 1),Iter2.value()->getLabel());
+            i++;
+        }
     }
-*/
+
 }

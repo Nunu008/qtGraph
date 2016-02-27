@@ -32,11 +32,9 @@ public:
     void doCollision();
     void refreshEdges();
 
-    void setNeighbours(QHash<QString,NodeSet> *neighbours);
+    void setNeighbours(QHash<QString, NodeSet> neighbours);
+    QHash<QString, NodeSet> getNeighbours();
     void refreshTreeView();
-
-private:
-    qreal angel, speed;
 
 public:
     bool Pressed;
@@ -50,7 +48,7 @@ public:
     QString mName;
     QRectF ellipse;
 
-    QHash<QString,NodeSet> *neighboursEllipse ;
+    QHash<QString,NodeSet> neighboursEllipse ;
 
     enum ManagedLineEnd {
         StartOfLine,

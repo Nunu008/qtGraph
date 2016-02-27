@@ -26,7 +26,7 @@ public:
     QString getLabel() const;
 
     //QHash<QString,NodeSet> *getNeighbours();
-    QHash<QString,NodeSet> getNeighbours() const;
+    QHash<QString, NodeSet> getNeighbours() const;
     NodeSet  getNeighbours(QString label);
 
 private:
