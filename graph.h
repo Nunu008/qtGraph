@@ -15,6 +15,8 @@ private:
 public:
     Node *createNode(QString name);
     void createEdge(Node *src, const QString & label, Node  *tgt);
+    void removeEdge(Node *src, const QString & label, Node  *tgt);
+
     Graph *clone();
     NodeSet getNodes();
 private:

@@ -25,14 +25,14 @@ Dialog::Dialog(QWidget *parent) :
 
     //test1();
     //test2();
-    test3();
+    //test3();
     //test4();
     //test5();
     //test6();
     //test7();
     //test8();
     //test9();
-
+    test10();
 
     int i=0;
     QHashIterator<int,Node*> Iter(graph->getNodes());
@@ -86,34 +86,6 @@ void Dialog::test1()
     start->ellipse->refreshEdges();
     end->ellipse->refreshEdges();
 
-/*    qhashModel->setColumnCount(2);
-    qhashModel->setRowCount(start.neighbours.count())*/;
-
-
-
-
-   // int i=0;
-   /*
-    QHashIterator<QString,NodeSet> Iter(start.neighbours);
-    while(Iter.hasNext())
-    {
-        Iter.next();
-
-        //qhashModel->setData(qhashModel->index(i, 0), Iter.value());
-        //i++;
-
-        // typ of edge
-        qDebug()<<Iter.key();
-
-        // label of neighbours
-        foreach(int i,Iter.value().keys())
-        {
-            qDebug()<< Iter.value()[i].label;
-        }
-
-    }
-*/
-
 }
 
 
@@ -123,16 +95,20 @@ void Dialog::test2()
     Node *start  = graph->createNode("s");
     Node *middel = graph->createNode("m");
     Node *end    = graph->createNode("e");
+    Node *x      = graph->createNode("x");
 
     graph->createEdge(start, "test",middel);
-    graph->createEdge(middel,"test",start);
+    //graph->createEdge(middel,"test",start);
 
     graph->createEdge(middel,"test",end);
-    graph->createEdge(end,   "test",middel);
+    //graph->createEdge(end,   "test",middel);
+
+    graph->createEdge(middel,"test",x);
 
     start->ellipse->refreshEdges();
     middel->ellipse->refreshEdges();
     end->ellipse->refreshEdges();
+    x->ellipse->refreshEdges();
 }
 
 
@@ -332,10 +308,35 @@ void Dialog::test9()
     end->ellipse->refreshEdges();
 
     //clone graph
-
-    //Graph *g2 = graph->clone();
+    Graph *g2 = graph->clone();
 
     //Graph *overallGraph = new Graph();
 
 
 }
+
+void Dialog::test10()
+{
+
+    Node *start  = graph->createNode("s");
+    Node *middel = graph->createNode("m");
+    Node *end    = graph->createNode("e");
+    Node *x      = graph->createNode("x");
+
+    graph->createEdge(start, "test",middel);
+    //graph->createEdge(middel,"test",start);
+
+    graph->createEdge(middel,"test",end);
+    //graph->createEdge(end,   "test",middel);
+
+    graph->createEdge(middel,"test",x);
+
+    start->ellipse->refreshEdges();
+    middel->ellipse->refreshEdges();
+    end->ellipse->refreshEdges();
+    x->ellipse->refreshEdges();
+
+
+    graph->removeEdge( middel, "test", x);
+}
+

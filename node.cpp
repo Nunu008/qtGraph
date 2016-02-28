@@ -24,7 +24,6 @@ long Node::getId()
 
 void Node::createEdge(const QString & label, Node *tgt)
 {
-
     NodeSet nodeSetLocal;
 
     nodeSetLocal = neighbours[label];
@@ -37,11 +36,35 @@ void Node::createEdge(const QString & label, Node *tgt)
     }
 
     nodeSetLocal.insert(tgt->getId(),tgt);
+    neighbours.insert(label,nodeSetLocal);
 
     if(!label.startsWith("_rev_"))
     {
         tgt->createEdge("_rev_"+label, this);
     }
+
+}
+
+void Node::removeEdge(const QString & label, Node *tgt)
+{
+    NodeSet nodeSetLocal;
+
+    nodeSetLocal = neighbours[label];
+
+
+    if(nodeSetLocal.isEmpty())
+    {
+        return;
+    }
+
+    if(nodeSetLocal.contains(tgt->getId()))
+    {
+        nodeSetLocal.remove(tgt->getId());
+        neighbours.insert(label,nodeSetLocal);
+
+        tgt->removeEdge("_rev_" + label,this);
+    }
+
 
 }
 

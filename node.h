@@ -21,13 +21,15 @@ public:
     long getId();
 
     void createEdge(const QString & label, Node *tgt);
+    void removeEdge(const QString &label, Node *tgt);
 
     void setLabel(QString label);
     QString getLabel() const;
 
-    //QHash<QString,NodeSet> *getNeighbours();
+
     QHash<QString, NodeSet> getNeighbours() const;
     NodeSet  getNeighbours(QString label);
+    void setNodeAttribute(QString attrName, QString value);
 
 private:
     long id;
@@ -44,7 +46,7 @@ public:
     QHash<QString,QString> getNodeAttribute()const;
     QString getNodeAttribute(QString attrName) const;
 
-    void setNodeAttribute(QString attrName, QString value);
+
 };
 
 #endif // NODE_H

@@ -44,6 +44,18 @@ void Graph::createEdge(Node *src, const QString & label, Node *tgt)
     tgt->ellipse->setNeighbours(tgt->neighbours);
 }
 
+void Graph::removeEdge(Node *src, const QString & label, Node *tgt)
+{
+    //logic elements
+    src->removeEdge(label, tgt);
+
+
+    //Gui elments
+    Dialog::scene->removeItem(src->ellipse->customLine);
+    src->ellipse->setNeighbours(src->neighbours);
+    tgt->ellipse->setNeighbours(tgt->neighbours);
+}
+
 Graph* Graph::clone()
 {
 
