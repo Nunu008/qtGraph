@@ -346,6 +346,6 @@ void Dialog::test10()
 void Dialog::test11()
 {
     //draw Graph
-    Node *start  = graph->createNode("s");
+      Node *start  = graph->createNode("s");
 
 }

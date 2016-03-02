@@ -20,8 +20,7 @@ public:
     Graph *clone();
     NodeSet getNodes();
 private:
-    static long maxId;
-    bool isGraph;
+    static long maxId;    
 
 };
 

@@ -35,6 +35,8 @@ public:
     void setNeighbours(QHash<QString, NodeSet> neighbours);
     QHash<QString, NodeSet> getNeighbours();
     void refreshTreeView();
+    void setGraph();
+
 
 public:
     bool Pressed;
@@ -47,6 +49,7 @@ public:
     QPointF mCenter;
     QString mName;
     QRectF ellipse;
+    bool isGraph;
 
     QHash<QString,NodeSet> neighboursEllipse ;
 
@@ -57,6 +60,11 @@ public:
     ManagedLineEnd m_myLineEnd;
 
 
+    enum ManagedShape{
+        Node,
+        Graph
+    };
+    ManagedShape m_myShape;
 
 };
 

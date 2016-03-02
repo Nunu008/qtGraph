@@ -29,6 +29,7 @@ CustomItem::CustomItem()
 
     setPos(mapToParent(startX, startY));
 
+    isGraph = false;
 
 
 }
@@ -41,21 +42,45 @@ QRectF CustomItem::boundingRect() const
 
 void CustomItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::gray);
 
-    if(Pressed)
+    if(isGraph == false)
     {
-        QPen pen(Qt::red, 3);
-        painter->setPen(pen);
 
+        painter->setBrush(Qt::gray);
+
+
+        if(Pressed)
+        {
+            QPen pen(Qt::red, 3);
+            painter->setPen(pen);
+        }
+        else
+        {
+            QPen pen(Qt::black, 3);
+            painter->setPen(pen);
+        }
+
+        painter->drawEllipse(ellipse);
     }
-    else
+
+    if(isGraph == true)
     {
-        QPen pen(Qt::black, 3);
-        painter->setPen(pen);
+        painter->setBrush(Qt::white);
+
+        if(Pressed)
+        {
+            QPen pen(Qt::red, 0.5);
+            painter->setPen(pen);
+        }
+        else
+        {
+            QPen pen(Qt::black, 0.5);
+            painter->setPen(pen);
+        }
+
+        painter->drawRect(ellipse);
     }
 
-    painter->drawEllipse(ellipse);
     painter->drawText(mCenter,mName);
 }
 
@@ -169,15 +194,20 @@ void CustomItem::refreshTreeView()
     QHashIterator<QString,NodeSet> Iter(this->getNeighbours());
     while(Iter.hasNext())
     {
-        Iter.next();
-        QHashIterator<int,Node*> Iter2(Iter.value());
-        while(Iter2.hasNext())
-        {
-            Iter2.next();
-            Dialog::qhashModel->setData(Dialog::qhashModel->index(i, 0),Iter2.key());
-            Dialog::qhashModel->setData(Dialog::qhashModel->index(i, 1),Iter2.value()->getLabel());
-            i++;
-        }
+          Iter.next();
+//          QHashIterator<int,Node*> Iter2(Iter.value());
+//        while(Iter2.hasNext())
+//        {
+//            Iter2.next();
+//            Dialog::qhashModel->setData(Dialog::qhashModel->index(i, 0),Iter2.key());
+//            Dialog::qhashModel->setData(Dialog::qhashModel->index(i, 1),Iter2.value()->getLabel());
+//            i++;
+//        }
     }
 
+}
+
+void CustomItem::setGraph()
+{
+    isGraph =true;
 }
