@@ -21,6 +21,7 @@ public:
     NodeSet getNodes();
 private:
     static long maxId;
+    bool isGraph;
 
 };
 

@@ -5,7 +5,12 @@ long Graph::maxId = 0;
 
 Graph::Graph()
 {
-
+    /*
+    isGraph = true;
+    this->ellipse = new CustomItem();
+    this->ellipse->setScale(5);
+    Dialog::scene->addItem(this->ellipse);
+    */
 }
 
 NodeSet Graph::getNodes()
@@ -15,6 +20,8 @@ NodeSet Graph::getNodes()
 
 Node* Graph::createNode(QString label)
 {
+
+
     //logic elements
     Node *newNode = new  Node();
     newNode->setId(maxId+1);
@@ -25,6 +32,13 @@ Node* Graph::createNode(QString label)
     //
     newNode->ellipse = new CustomItem();
     newNode->ellipse->mName = label;
+
+//    if(this->isGraph == true)
+//    {
+//        this->ellipse->setScale(10);
+
+//    }
+
     Dialog::scene->addItem(newNode->ellipse);
 
     return newNode;

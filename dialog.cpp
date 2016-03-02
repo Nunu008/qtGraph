@@ -32,7 +32,8 @@ Dialog::Dialog(QWidget *parent) :
     //test7();
     //test8();
     //test9();
-    test10();
+    //test10();
+    test11();
 
     int i=0;
     QHashIterator<int,Node*> Iter(graph->getNodes());
@@ -340,3 +341,11 @@ void Dialog::test10()
     graph->removeEdge( middel, "test", x);
 }
 
+
+
+void Dialog::test11()
+{
+    //draw Graph
+    Node *start  = graph->createNode("s");
+
+}
