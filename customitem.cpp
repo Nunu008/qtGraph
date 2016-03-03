@@ -78,7 +78,7 @@ void CustomItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
             painter->setPen(pen);
         }
 
-        painter->drawRect(ellipse);
+        painter->drawRoundRect(ellipse);
     }
 
     painter->drawText(mCenter,mName);
