@@ -9,6 +9,10 @@ Graph::Graph()
     this->ellipse->setGraph();
     this->ellipse->setScale(5);
     Dialog::scene->addItem(this->ellipse);
+
+    //group = Dialog::scene->createItemGroup(Dialog::scene->selectedItems ());
+    //group->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
+    //group->addToGroup(this->ellipse);
 }
 
 NodeSet Graph::getNodes()
@@ -32,7 +36,7 @@ Node* Graph::createNode(QString label)
     newNode->ellipse->mName = label;
 
     Dialog::scene->addItem(newNode->ellipse);
-
+    //group->addToGroup(newNode->ellipse);
     return newNode;
 }
 
@@ -43,7 +47,9 @@ void Graph::createEdge(Node *src, const QString & label, Node *tgt)
 
     //Gui elments
     src->ellipse->customLine = new  QGraphicsLineItem(0,0,0,0);
+
     Dialog::scene->addItem(src->ellipse->customLine);
+    //group->addToGroup(src->ellipse->customLine);
     src->ellipse->setLine(src->ellipse->customLine,false);// for false create enum with start and end
     tgt->ellipse->setLine(src->ellipse->customLine,true);
     src->ellipse->setNeighbours(src->neighbours);

@@ -11,6 +11,7 @@ public:
 
 private:
     NodeSet nodes;
+    QGraphicsItemGroup *group;
 
 public:
     Node *createNode(QString name);

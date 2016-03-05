@@ -347,5 +347,11 @@ void Dialog::test11()
 {
     //draw Graph
       Node *start  = graph->createNode("s");
+      Node *end    = graph->createNode("e");
+
+      graph->createEdge(start, "test",end);
+
+      start->ellipse->refreshEdges();
+      end->ellipse->refreshEdges();
 
 }
