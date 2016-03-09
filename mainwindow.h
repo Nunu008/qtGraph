@@ -1,8 +1,8 @@
-#ifndef DIALOG_H
-#define DIALOG_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QDebug>
-#include <QDialog>
+#include <QMainWindow>
 #include <QtGui>
 #include <QtCore>
 #include <QGraphicsScene>
@@ -14,19 +14,19 @@
 #include "node.h"
 
 namespace Ui {
-class Dialog;
+class MainWindow;
 }
 
 
 class Graph;
 
-class Dialog : public QDialog
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit Dialog(QWidget *parent = 0);
-    ~Dialog();
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
     void test1();
     void test2();
@@ -39,9 +39,10 @@ public:
     void test9();
     void test10();
     void test11();
-private:
-    Ui::Dialog *ui;
 
+
+private:
+    Ui::MainWindow *ui;
 
 public:
     static QGraphicsScene     *scene;
@@ -53,6 +54,7 @@ public:
 protected:
     virtual void wheelEvent(QWheelEvent* event);
 
+
 };
 
-#endif // DIALOG_H
+#endif // MAINWINDOW_H

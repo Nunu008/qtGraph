@@ -2,7 +2,8 @@
 #define GRAPH_H
 
 #include "nodeset.h"
-#include "dialog.h"
+//#include "dialog.h"
+#include "mainwindow.h"
 
 class Graph : public Node
 {

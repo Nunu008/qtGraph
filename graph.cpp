@@ -8,7 +8,8 @@ Graph::Graph()
     this->ellipse = new CustomItem();
     this->ellipse->setGraph();
     this->ellipse->setScale(5);
-    Dialog::scene->addItem(this->ellipse);
+    //Dialog::scene->addItem(this->ellipse);
+    MainWindow::scene->addItem(this->ellipse);
 
     //group = Dialog::scene->createItemGroup(Dialog::scene->selectedItems ());
     //group->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
@@ -35,7 +36,8 @@ Node* Graph::createNode(QString label)
     newNode->ellipse = new CustomItem();
     newNode->ellipse->mName = label;
 
-    Dialog::scene->addItem(newNode->ellipse);
+    //Dialog::scene->addItem(newNode->ellipse);
+    MainWindow::scene->addItem(newNode->ellipse);
     //group->addToGroup(newNode->ellipse);
     return newNode;
 }
@@ -48,7 +50,8 @@ void Graph::createEdge(Node *src, const QString & label, Node *tgt)
     //Gui elments
     src->ellipse->customLine = new  QGraphicsLineItem(0,0,0,0);
 
-    Dialog::scene->addItem(src->ellipse->customLine);
+    //Dialog::scene->addItem(src->ellipse->customLine);
+    MainWindow::scene->addItem(src->ellipse->customLine);
     //group->addToGroup(src->ellipse->customLine);
     src->ellipse->setLine(src->ellipse->customLine,false);// for false create enum with start and end
     tgt->ellipse->setLine(src->ellipse->customLine,true);
@@ -63,7 +66,8 @@ void Graph::removeEdge(Node *src, const QString & label, Node *tgt)
 
 
     //Gui elments
-    Dialog::scene->removeItem(src->ellipse->customLine);
+    //Dialog::scene->removeItem(src->ellipse->customLine);
+    MainWindow::scene->removeItem(src->ellipse->customLine);
     src->ellipse->setNeighbours(src->neighbours);
     tgt->ellipse->setNeighbours(tgt->neighbours);
 }

@@ -181,13 +181,18 @@ QHash<QString,NodeSet>  CustomItem::getNeighbours()
 void CustomItem::refreshTreeView()
 {
 
-    Dialog::qhashModel->clear();
-    Dialog::qhashModel->setColumnCount(2);
-    Dialog::qhashModel->setRowCount(20);
+    //Dialog::qhashModel->clear();
+    //Dialog::qhashModel->setColumnCount(2);
+    //Dialog::qhashModel->setRowCount(20);
+
+    MainWindow::qhashModel->clear();
+    MainWindow::qhashModel->setColumnCount(2);
+    MainWindow::qhashModel->setRowCount(20);
 
     QStringList header;
     header<< "ID"<<"Node label";
-    Dialog::qhashModel->setHorizontalHeaderLabels(header);
+    //Dialog::qhashModel->setHorizontalHeaderLabels(header);
+    MainWindow::qhashModel->setHorizontalHeaderLabels(header);
 
 
     int i=0;
