@@ -12,6 +12,7 @@
 
 #include "graph.h"
 #include "node.h"
+#include "rule.h"
 
 namespace Ui {
 class MainWindow;

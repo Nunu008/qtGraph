@@ -361,6 +361,7 @@ void MainWindow::test12()
 {
     //start graph
 
+
     Node *leftBank = graph->createNode("l");
     Node *rightBank= graph->createNode("r");
 
@@ -409,5 +410,8 @@ void MainWindow::test12()
 
     //clone graph
     Graph *g2 = graph->clone();
+
+    Rule loadBoatWithPerson = new Rule();
+
 
 }
