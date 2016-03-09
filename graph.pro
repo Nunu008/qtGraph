@@ -18,14 +18,16 @@ SOURCES += main.cpp\
     nodeset.cpp \
     node.cpp \
     customitem.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    rule.cpp
 
 HEADERS  += dialog.h \
     graph.h \
     nodeset.h \
     node.h \
     customitem.h \
-    mainwindow.h
+    mainwindow.h \
+    rule.h
 
 FORMS    += dialog.ui \
     mainwindow.ui

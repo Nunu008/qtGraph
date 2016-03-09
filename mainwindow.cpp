@@ -34,7 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //test8();
     //test9();
     //test10();
-    test11();
+    //test11();
+    test12();
 
     int i=0;
     QHashIterator<int,Node*> Iter(graph->getNodes());
@@ -353,5 +354,60 @@ void MainWindow::test11()
 
       start->ellipse->refreshEdges();
       end->ellipse->refreshEdges();
+
+}
+
+void MainWindow::test12()
+{
+    //start graph
+
+    Node *leftBank = graph->createNode("l");
+    Node *rightBank= graph->createNode("r");
+
+    leftBank->setNodeAttribute("side","left");
+    rightBank->setNodeAttribute("side","right");
+
+
+    Node *boat = graph->createNode("boat");
+
+    graph->createEdge(boat,"at", leftBank);
+
+
+    Node *m1       = graph->createNode("m1");
+    Node *m2       = graph->createNode("m2");
+    Node *m3       = graph->createNode("m3");
+
+    graph->createEdge(m1,"at", leftBank);
+    graph->createEdge(m2,"at", leftBank);
+    graph->createEdge(m3,"at", leftBank);
+
+
+    Node *c1       = graph->createNode("c1");
+    Node *c2       = graph->createNode("c2");
+    Node *c3       = graph->createNode("c3");
+
+    graph->createEdge(c1,"at", leftBank);
+    graph->createEdge(c2,"at", leftBank);
+    graph->createEdge(c3,"at", leftBank);
+
+
+
+    leftBank->ellipse->refreshEdges();
+    rightBank->ellipse->refreshEdges();
+
+    boat->ellipse->refreshEdges();
+
+    m1->ellipse->refreshEdges();
+    m2->ellipse->refreshEdges();
+    m3->ellipse->refreshEdges();
+
+    c1->ellipse->refreshEdges();
+    c2->ellipse->refreshEdges();
+    c3->ellipse->refreshEdges();
+
+
+
+    //clone graph
+    Graph *g2 = graph->clone();
 
 }

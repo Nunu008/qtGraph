@@ -35,6 +35,7 @@ Node* Graph::createNode(QString label)
     //
     newNode->ellipse = new CustomItem();
     newNode->ellipse->mName = label;
+    newNode->ellipse->setZValue(50);
 
     //Dialog::scene->addItem(newNode->ellipse);
     MainWindow::scene->addItem(newNode->ellipse);
