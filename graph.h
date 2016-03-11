@@ -18,11 +18,15 @@ public:
     Node *createNode(QString name);
     void createEdge(Node *src, const QString & label, Node  *tgt);
     void removeEdge(Node *src, const QString & label, Node  *tgt);
+    void refreshNodeEdges();
 
     Graph *clone();
     NodeSet getNodes();
+
+    QGraphicsItemGroup *getGroup() const;
+
 private:
-    static long maxId;    
+    static long maxId;
 
 };
 

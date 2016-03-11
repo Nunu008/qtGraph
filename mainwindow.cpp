@@ -34,8 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //test8();
     //test9();
     //test10();
-    //test11();
-    test12();
+    test11();
+    //test12();
 
     int i=0;
     QHashIterator<int,Node*> Iter(graph->getNodes());
@@ -352,8 +352,9 @@ void MainWindow::test11()
 
       graph->createEdge(start, "test",end);
 
-      start->ellipse->refreshEdges();
-      end->ellipse->refreshEdges();
+      graph->refreshNodeEdges();
+      //start->ellipse->refreshEdges();
+      //end->ellipse->refreshEdges();
 
 }
 
@@ -393,25 +394,13 @@ void MainWindow::test12()
 
 
 
-    leftBank->ellipse->refreshEdges();
-    rightBank->ellipse->refreshEdges();
-
-    boat->ellipse->refreshEdges();
-
-    m1->ellipse->refreshEdges();
-    m2->ellipse->refreshEdges();
-    m3->ellipse->refreshEdges();
-
-    c1->ellipse->refreshEdges();
-    c2->ellipse->refreshEdges();
-    c3->ellipse->refreshEdges();
-
 
 
     //clone graph
     Graph *g2 = graph->clone();
 
-    Rule loadBoatWithPerson = new Rule();
+    g2->refreshNodeEdges();
+    graph->refreshNodeEdges();
 
 
 }

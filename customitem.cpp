@@ -29,9 +29,10 @@ CustomItem::CustomItem()
 
     setPos(mapToParent(startX, startY));
 
-    isGraph = false;
+    isGraph    = false;
+    isGroupped = false;
 
-
+    customItemGroup = NULL;
 }
 
 QRectF CustomItem::boundingRect() const
@@ -117,6 +118,16 @@ void CustomItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mouseReleaseEvent(event);
 }
 
+void CustomItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* e )
+{
+    if(isGraph == true)
+    {
+        isGroupped = !isGroupped;
+        qDebug()<<"doubleclick: isGroupped: "<< isGroupped;
+
+        customItemGroup->setHandlesChildEvents(isGroupped);
+    }
+}
 
 void CustomItem::setLine(QGraphicsLineItem *newLine, bool side)
 {
@@ -216,3 +227,9 @@ void CustomItem::setGraph()
 {
     isGraph =true;
 }
+
+void CustomItem::setGroup(QGraphicsItemGroup *group)
+{
+    customItemGroup = group;
+}
+

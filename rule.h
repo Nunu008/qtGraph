@@ -3,20 +3,22 @@
 
 #include "graph.h"
 
+class Graph;
+
 class Rule
 {
 public:
     Rule();
 
-    Graph getRightGraph() const;
-    void setRightGraph(const Graph &value);
+//    Graph getRightGraph() const;
+//    void setRightGraph(const Graph &value);
 
-    Graph getLeftGraph() const;
-    void setLeftGraph(const Graph &value);
+//    Graph getLeftGraph() const;
+//    void setLeftGraph(const Graph &value);
 
 private:
-    Graph leftGraph;
-    Graph rightGraph;
+     //Graph leftGraph;
+     //Graph rightGraph;
 };
 
 #endif // RULE_H
