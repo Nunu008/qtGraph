@@ -16,6 +16,7 @@ Graph::Graph()
     group->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
     group->addToGroup(this->ellipse);
     group->setHandlesChildEvents(false);
+    isGroupped = false;
 
     this->ellipse->setGroup(group);
 }
@@ -153,5 +154,14 @@ void Graph::refreshNodeEdges()
         Iter.next();
         Iter.value()->ellipse->refreshEdges();
     }
+}
+
+void Graph::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* e )
+{
+        isGroupped = !isGroupped;
+        qDebug()<<"doubleclick: isGroupped: "<< isGroupped;
+
+        group->setHandlesChildEvents(isGroupped);
+
 }
 

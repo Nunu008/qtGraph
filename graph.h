@@ -13,6 +13,7 @@ public:
 private:
     NodeSet nodes;
     QGraphicsItemGroup *group;
+    bool isGroupped;
 
 public:
     Node *createNode(QString name);
@@ -25,6 +26,7 @@ public:
 
     QGraphicsItemGroup *getGroup() const;
 
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *e);
 private:
     static long maxId;
 
