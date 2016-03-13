@@ -97,10 +97,11 @@ void CustomItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     Pressed = true;
 
-
     refreshEdges();
 
     refreshTreeView();
+
+    qDebug()<<"CustomItemRect";
 
     update();
     QGraphicsItem::mousePressEvent(event);

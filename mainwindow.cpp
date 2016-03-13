@@ -411,7 +411,7 @@ void MainWindow::test12()
     //clone graph
     Graph *g2 = graph->clone();
 
-    Rule loadBoatWithPerson = new Rule();
+//    Rule loadBoatWithPerson = new Rule();
 
 
 }
