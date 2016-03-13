@@ -23,8 +23,10 @@ public:
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* e );
 
     void setLine(QGraphicsLineItem *newLine, bool side);
+    void setGroup(QGraphicsItemGroup *group);
 
     qreal getXPosEllipse();
     qreal getYPosEllipse();
@@ -49,7 +51,9 @@ public:
     QPointF mCenter;
     QString mName;
     QRectF ellipse;
+    QGraphicsItemGroup *customItemGroup;
     bool isGraph;
+    bool isGroupped;
 
     QHash<QString,NodeSet> neighboursEllipse ;
 

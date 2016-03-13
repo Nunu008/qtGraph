@@ -12,8 +12,18 @@ Graph::Graph()
     MainWindow::scene->addItem(this->ellipse);
 
     //group = Dialog::scene->createItemGroup(Dialog::scene->selectedItems ());
-    //group->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
-    //group->addToGroup(this->ellipse);
+    group = MainWindow::scene->createItemGroup(MainWindow::scene->selectedItems ());
+    group->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
+    group->addToGroup(this->ellipse);
+    group->setHandlesChildEvents(false);
+    isGroupped = false;
+
+    this->ellipse->setGroup(group);
+}
+
+QGraphicsItemGroup *Graph::getGroup() const
+{
+    return group;
 }
 
 NodeSet Graph::getNodes()
@@ -23,8 +33,6 @@ NodeSet Graph::getNodes()
 
 Node* Graph::createNode(QString label)
 {
-
-
     //logic elements
     Node *newNode = new  Node();
     newNode->setId(maxId+1);
@@ -39,7 +47,7 @@ Node* Graph::createNode(QString label)
 
     //Dialog::scene->addItem(newNode->ellipse);
     MainWindow::scene->addItem(newNode->ellipse);
-    //group->addToGroup(newNode->ellipse);
+    group->addToGroup(newNode->ellipse);
     return newNode;
 }
 
@@ -53,7 +61,7 @@ void Graph::createEdge(Node *src, const QString & label, Node *tgt)
 
     //Dialog::scene->addItem(src->ellipse->customLine);
     MainWindow::scene->addItem(src->ellipse->customLine);
-    //group->addToGroup(src->ellipse->customLine);
+    group->addToGroup(src->ellipse->customLine);
     src->ellipse->setLine(src->ellipse->customLine,false);// for false create enum with start and end
     tgt->ellipse->setLine(src->ellipse->customLine,true);
     src->ellipse->setNeighbours(src->neighbours);
@@ -136,3 +144,24 @@ Graph* Graph::clone()
     return result;
 
 }
+
+void Graph::refreshNodeEdges()
+{
+    // loop over all nodes
+    QHashIterator<int,Node*> Iter(this->getNodes());
+    while(Iter.hasNext())
+    {
+        Iter.next();
+        Iter.value()->ellipse->refreshEdges();
+    }
+}
+
+void Graph::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* e )
+{
+        isGroupped = !isGroupped;
+        qDebug()<<"doubleclick: isGroupped: "<< isGroupped;
+
+        group->setHandlesChildEvents(isGroupped);
+
+}
+
