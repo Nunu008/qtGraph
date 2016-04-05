@@ -31,6 +31,8 @@ public:
     NodeSet  getNeighbours(QString label);
     void setNodeAttribute(QString attrName, QString value);
 
+    QHash<QString, QString> attributes;
+
 private:
     long id;
 

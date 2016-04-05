@@ -14,7 +14,7 @@ Graph::Graph()
     //group = Dialog::scene->createItemGroup(Dialog::scene->selectedItems ());
     group = MainWindow::scene->createItemGroup(MainWindow::scene->selectedItems ());
     group->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
-    group->addToGroup(this->ellipse);
+    //group->addToGroup(this->ellipse);
     group->setHandlesChildEvents(false);
     isGroupped = false;
 

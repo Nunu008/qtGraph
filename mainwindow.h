@@ -19,6 +19,9 @@ class MainWindow;
 }
 
 
+static const QString NODE = "N";
+static const QString TYPE = "type";
+
 class Graph;
 
 class MainWindow : public QMainWindow
@@ -41,6 +44,7 @@ public:
     void test10();
     void test11();
     void test12();
+    void test13();
 
 
 private:

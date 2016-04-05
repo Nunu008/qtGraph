@@ -34,8 +34,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //test8();
     //test9();
     //test10();
-    test11();
+    //test11();
     //test12();
+    test13();
 
     int i=0;
     QHashIterator<int,Node*> Iter(graph->getNodes());
@@ -398,5 +399,57 @@ void MainWindow::test12()
 
     //clone graph
     Graph *g2 = graph->clone();
+
+}
+
+void MainWindow::test13()
+{
+    //draw Graph
+      Node *start  = graph->createNode(NODE);
+      Node *middle = graph->createNode(NODE);
+      Node *end    = graph->createNode(NODE);
+
+      start->setNodeAttribute(TYPE,"s");
+      middle->setNodeAttribute(TYPE,"m");
+      end->setNodeAttribute(TYPE,"e");
+
+      graph->createEdge(start,  "test1",middle);
+      graph->createEdge(middle, "test2",end);
+
+
+      graph->refreshNodeEdges();
+      start->ellipse->refreshEdges();
+      end->ellipse->refreshEdges();
+
+
+
+      Graph *startGraphBackup = graph->clone();
+
+
+      graph->removeEdge( start, "test1", middle);
+      graph->createEdge( start,  "test1",end);
+
+      // add graph rewrite rule
+      Rule *firstRule   = new Rule();
+      Graph *leftGraph = new Graph();
+
+      //nodePatternObject
+      Node *startPO     = leftGraph->createNode(NODE);
+      Node *middlePO    = leftGraph->createNode(NODE);
+      Node *endPO       = leftGraph->createNode(NODE);
+
+
+      startPO->createEdge(start,  "test1",middle);
+      middlePO->createEdge(middle, "test1", end);
+
+      firstRule->setLeftGraph(leftGraph);
+
+
+      Graph *rightGraph = leftGraph->clone();
+
+      // GraphAndModelDrivenEngineeringWT1516L05SimpleGraphMatching
+      // https://www.youtube.com/watch?v=OK2FECoTbz4
+      // weiter min video 20.52
+
 
 }
